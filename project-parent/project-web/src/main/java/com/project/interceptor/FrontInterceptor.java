@@ -24,7 +24,7 @@ public class FrontInterceptor implements HandlerInterceptor {
         if (isLogin == null || StringUtils.isBlank(isLogin.toString())) {
             logger.debug("========check login if false ===islogin==[" + isLogin + "]");
            // request.getRequestDispatcher(Config.LOGIN_URL).forward(request, response);
-            response.sendRedirect("/login");
+            response.sendRedirect(Config.LOGIN_URL);
             return false;//一定要有return false
         }
         return true;

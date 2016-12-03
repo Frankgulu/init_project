@@ -42,6 +42,7 @@
     <entry_points version="2.0" />
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/project-admin" />
     <file type="web" url="file://$PROJECT_DIR$/project-web" />
   </component>
   <component name="IdProvider" IDEtalkID="796D24FDE9A318B57973231104D0F223" />
