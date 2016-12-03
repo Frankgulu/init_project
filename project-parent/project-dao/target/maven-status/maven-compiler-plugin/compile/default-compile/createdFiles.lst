@@ -1,0 +1,4 @@
+com\project\dao\ProductMapper.class
+com\project\model\Product.class
+com\project\model\User.class
+com\project\dao\UserMapper.class

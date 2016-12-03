@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.project.model.Goods" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="VARCHAR" />
+    <result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="markket_price" property="markketPrice" jdbcType="DECIMAL" />
+    <result column="sale_price" property="salePrice" jdbcType="DECIMAL" />
+    <result column="sale_points" property="salePoints" jdbcType="INTEGER" />
+    <result column="is_single_order" property="isSingleOrder" jdbcType="BIT" />
+    <result column="is_unified_specs" property="isUnifiedSpecs" jdbcType="BIT" />
+    <result column="is_group" property="isGroup" jdbcType="BIT" />
+    <result column="is_sale" property="isSale" jdbcType="BIT" />
+    <result column="is_frozen" property="isFrozen" jdbcType="BIT" />
+    <result column="shipping_type" property="shippingType" jdbcType="BIT" />
+    <result column="shipping_fee" property="shippingFee" jdbcType="DECIMAL" />
+    <result column="commission" property="commission" jdbcType="DECIMAL" />
+    <result column="stock_count" property="stockCount" jdbcType="INTEGER" />
+    <result column="lock_count" property="lockCount" jdbcType="INTEGER" />
+    <result column="sale_count" property="saleCount" jdbcType="INTEGER" />
+    <result column="customize_stock_count" property="customizeStockCount" jdbcType="INTEGER" />
+    <result column="limited_count" property="limitedCount" jdbcType="INTEGER" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.project.model.Goods" extends="BaseResultMap" >
+    <result column="descriptions" property="descriptions" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, shop_id, classes_id, markket_price, sale_price, sale_points, is_single_order, 
+    is_unified_specs, is_group, is_sale, is_frozen, shipping_type, shipping_fee, commission, 
+    stock_count, lock_count, sale_count, customize_stock_count, limited_count, rank, 
+    created_at, updated_at, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    descriptions
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ec_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ec_goods
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.project.model.Goods" >
+    insert into ec_goods (id, name, shop_id, 
+      classes_id, markket_price, sale_price, 
+      sale_points, is_single_order, is_unified_specs, 
+      is_group, is_sale, is_frozen, shipping_type, 
+      shipping_fee, commission, stock_count, 
+      lock_count, sale_count, customize_stock_count, 
+      limited_count, rank, created_at, 
+      updated_at, status, descriptions
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{shopId,jdbcType=VARCHAR}, 
+      #{classesId,jdbcType=VARCHAR}, #{markketPrice,jdbcType=DECIMAL}, #{salePrice,jdbcType=DECIMAL}, 
+      #{salePoints,jdbcType=INTEGER}, #{isSingleOrder,jdbcType=BIT}, #{isUnifiedSpecs,jdbcType=BIT}, 
+      #{isGroup,jdbcType=BIT}, #{isSale,jdbcType=BIT}, #{isFrozen,jdbcType=BIT}, #{shippingType,jdbcType=BIT}, 
+      #{shippingFee,jdbcType=DECIMAL}, #{commission,jdbcType=DECIMAL}, #{stockCount,jdbcType=INTEGER}, 
+      #{lockCount,jdbcType=INTEGER}, #{saleCount,jdbcType=INTEGER}, #{customizeStockCount,jdbcType=INTEGER}, 
+      #{limitedCount,jdbcType=INTEGER}, #{rank,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{descriptions,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.model.Goods" >
+    insert into ec_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="markketPrice != null" >
+        markket_price,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="salePoints != null" >
+        sale_points,
+      </if>
+      <if test="isSingleOrder != null" >
+        is_single_order,
+      </if>
+      <if test="isUnifiedSpecs != null" >
+        is_unified_specs,
+      </if>
+      <if test="isGroup != null" >
+        is_group,
+      </if>
+      <if test="isSale != null" >
+        is_sale,
+      </if>
+      <if test="isFrozen != null" >
+        is_frozen,
+      </if>
+      <if test="shippingType != null" >
+        shipping_type,
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="stockCount != null" >
+        stock_count,
+      </if>
+      <if test="lockCount != null" >
+        lock_count,
+      </if>
+      <if test="saleCount != null" >
+        sale_count,
+      </if>
+      <if test="customizeStockCount != null" >
+        customize_stock_count,
+      </if>
+      <if test="limitedCount != null" >
+        limited_count,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="descriptions != null" >
+        descriptions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="markketPrice != null" >
+        #{markketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePoints != null" >
+        #{salePoints,jdbcType=INTEGER},
+      </if>
+      <if test="isSingleOrder != null" >
+        #{isSingleOrder,jdbcType=BIT},
+      </if>
+      <if test="isUnifiedSpecs != null" >
+        #{isUnifiedSpecs,jdbcType=BIT},
+      </if>
+      <if test="isGroup != null" >
+        #{isGroup,jdbcType=BIT},
+      </if>
+      <if test="isSale != null" >
+        #{isSale,jdbcType=BIT},
+      </if>
+      <if test="isFrozen != null" >
+        #{isFrozen,jdbcType=BIT},
+      </if>
+      <if test="shippingType != null" >
+        #{shippingType,jdbcType=BIT},
+      </if>
+      <if test="shippingFee != null" >
+        #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="stockCount != null" >
+        #{stockCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockCount != null" >
+        #{lockCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleCount != null" >
+        #{saleCount,jdbcType=INTEGER},
+      </if>
+      <if test="customizeStockCount != null" >
+        #{customizeStockCount,jdbcType=INTEGER},
+      </if>
+      <if test="limitedCount != null" >
+        #{limitedCount,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="descriptions != null" >
+        #{descriptions,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.model.Goods" >
+    update ec_goods
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        classes_id = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="markketPrice != null" >
+        markket_price = #{markketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="salePoints != null" >
+        sale_points = #{salePoints,jdbcType=INTEGER},
+      </if>
+      <if test="isSingleOrder != null" >
+        is_single_order = #{isSingleOrder,jdbcType=BIT},
+      </if>
+      <if test="isUnifiedSpecs != null" >
+        is_unified_specs = #{isUnifiedSpecs,jdbcType=BIT},
+      </if>
+      <if test="isGroup != null" >
+        is_group = #{isGroup,jdbcType=BIT},
+      </if>
+      <if test="isSale != null" >
+        is_sale = #{isSale,jdbcType=BIT},
+      </if>
+      <if test="isFrozen != null" >
+        is_frozen = #{isFrozen,jdbcType=BIT},
+      </if>
+      <if test="shippingType != null" >
+        shipping_type = #{shippingType,jdbcType=BIT},
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="stockCount != null" >
+        stock_count = #{stockCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockCount != null" >
+        lock_count = #{lockCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleCount != null" >
+        sale_count = #{saleCount,jdbcType=INTEGER},
+      </if>
+      <if test="customizeStockCount != null" >
+        customize_stock_count = #{customizeStockCount,jdbcType=INTEGER},
+      </if>
+      <if test="limitedCount != null" >
+        limited_count = #{limitedCount,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="descriptions != null" >
+        descriptions = #{descriptions,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.project.model.Goods" >
+    update ec_goods
+    set name = #{name,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      markket_price = #{markketPrice,jdbcType=DECIMAL},
+      sale_price = #{salePrice,jdbcType=DECIMAL},
+      sale_points = #{salePoints,jdbcType=INTEGER},
+      is_single_order = #{isSingleOrder,jdbcType=BIT},
+      is_unified_specs = #{isUnifiedSpecs,jdbcType=BIT},
+      is_group = #{isGroup,jdbcType=BIT},
+      is_sale = #{isSale,jdbcType=BIT},
+      is_frozen = #{isFrozen,jdbcType=BIT},
+      shipping_type = #{shippingType,jdbcType=BIT},
+      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      commission = #{commission,jdbcType=DECIMAL},
+      stock_count = #{stockCount,jdbcType=INTEGER},
+      lock_count = #{lockCount,jdbcType=INTEGER},
+      sale_count = #{saleCount,jdbcType=INTEGER},
+      customize_stock_count = #{customizeStockCount,jdbcType=INTEGER},
+      limited_count = #{limitedCount,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT},
+      descriptions = #{descriptions,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.model.Goods" >
+    update ec_goods
+    set name = #{name,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      markket_price = #{markketPrice,jdbcType=DECIMAL},
+      sale_price = #{salePrice,jdbcType=DECIMAL},
+      sale_points = #{salePoints,jdbcType=INTEGER},
+      is_single_order = #{isSingleOrder,jdbcType=BIT},
+      is_unified_specs = #{isUnifiedSpecs,jdbcType=BIT},
+      is_group = #{isGroup,jdbcType=BIT},
+      is_sale = #{isSale,jdbcType=BIT},
+      is_frozen = #{isFrozen,jdbcType=BIT},
+      shipping_type = #{shippingType,jdbcType=BIT},
+      shipping_fee = #{shippingFee,jdbcType=DECIMAL},
+      commission = #{commission,jdbcType=DECIMAL},
+      stock_count = #{stockCount,jdbcType=INTEGER},
+      lock_count = #{lockCount,jdbcType=INTEGER},
+      sale_count = #{saleCount,jdbcType=INTEGER},
+      customize_stock_count = #{customizeStockCount,jdbcType=INTEGER},
+      limited_count = #{limitedCount,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

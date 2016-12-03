@@ -1,0 +1,3 @@
+com\project\service\UserService.class
+com\project\service\BaseService.class
+com\project\service\impl\UserServiceImpl.class
